@@ -17,6 +17,7 @@ public class ShoppingCart
 
     public ShoppingCart()
     {
+        this.lineItems = new ArrayList<>();
     }
 
     public ArrayList<LineItem> getLineItems()

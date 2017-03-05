@@ -30,6 +30,13 @@ public class ShoppingCartServlet extends HttpServlet
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType( "text/html;charset=UTF-8" );
+        HttpSession session = request.getSession(true);
+        User currentUser = (User)session.getAttribute("currentSessionUser");
+        
+        if (currentUser == null)
+        {
+            forward("/login.jsp", request, response); //log-in page  
+        }
         
         // Get requested bottom and topping
         String requestedBottomString = request.getParameter("Bottom");
@@ -44,7 +51,6 @@ public class ShoppingCartServlet extends HttpServlet
         // Fetch shopping cart from session
         HttpSession ses = request.getSession();
         ShoppingCart shoppingCart = (ShoppingCart)ses.getAttribute("shoppingCart");
-        User currentUser = (User)ses.getAttribute("currentSessionUser");
         
         // Check if the line item already exists, if it does increase quantity
         ArrayList<LineItem> lineItems = shoppingCart.getLineItems();

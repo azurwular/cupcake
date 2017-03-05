@@ -4,6 +4,8 @@
     Author     : kasper
 --%>
 
+<%@page import="Model.LineItem"%>
+<%@page import="Model.ShoppingCart"%>
 <%@page import="Model.User"%>
 <%@page import="Model.ModelFacade"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,7 +16,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%  User user = (User) session.getAttribute("currentSessionUser");%>
+        <%  User user = (User) session.getAttribute("currentSessionUser");
+            ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
+        %>
 
         <%
             String[] toppings = ModelFacade.getToppings();
@@ -63,5 +67,17 @@
             </table>
             <input type="submit" value="submit" />
         </form>
+        <% if (shoppingCart.getLineItems().size() > 0) { %>
+        <table>
+            <thead><th>bottom</th><th>Topping</th><th>Price</th></thead>
+            <tbody>
+                <% for (LineItem lineItem : shoppingCart.getLineItems()) { %>
+                <td><%=lineItem.getBottom().getName() %></td>
+                <td><%=lineItem.getTopping().getName() %></td>
+                <td><%= Math.round(lineItem.getBottom().getPrice() + lineItem.getTopping().getPrice()) %></td>
+            <%}%>
+            </tbody>
+        </table>
+        <%}%>
     </body>
 </html>
