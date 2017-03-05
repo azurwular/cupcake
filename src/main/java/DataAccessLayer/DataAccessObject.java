@@ -8,7 +8,7 @@ public class DataAccessObject {
 
     private Connection con;
     private static String driver = "com.mysql.jdbc.Driver";
-    private static String URL = "jdbc:mysql://localhost:3306/cupcakes";
+    private static String URL = "jdbc:mysql://178.62.249.30:3306/cupcakes";
     private static String id = "root";
     private static String pw = "root";
 

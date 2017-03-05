@@ -69,7 +69,7 @@
         </form>
         <% if (shoppingCart.getLineItems().size() > 0) { %>
         <table>
-            <thead><th>bottom</th><th>Topping</th><th>Price</th></thead>
+            <thead><th>Bottom</th><th>Topping</th><th>Price</th></thead>
             <tbody>
                 <% for (LineItem lineItem : shoppingCart.getLineItems()) { %>
                 <td><%=lineItem.getBottom().getName() %></td>
